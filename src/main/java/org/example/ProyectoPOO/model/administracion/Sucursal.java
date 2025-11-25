@@ -1,4 +1,4 @@
-package org.example.ProyectoPOO.administracion;
+package org.example.ProyectoPOO.model.administracion;
 
 import lombok.Getter;
 import lombok.Setter;

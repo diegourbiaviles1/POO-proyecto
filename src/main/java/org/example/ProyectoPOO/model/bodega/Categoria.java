@@ -1,7 +1,8 @@
-package org.example.ProyectoPOO.model;
+package org.example.ProyectoPOO.model.bodega;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.ProyectoPOO.model.BaseEntity;
 import org.openxava.annotations.TextArea;
 
 import javax.persistence.Column;

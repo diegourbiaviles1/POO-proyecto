@@ -1,4 +1,4 @@
-package org.example.ProyectoPOO.transporte;
+package org.example.ProyectoPOO.model.transporte;
 
 public enum EnvioEstado {
 

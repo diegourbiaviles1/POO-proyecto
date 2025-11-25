@@ -1,4 +1,4 @@
-package org.example.ProyectoPOO.bodega;
+package org.example.ProyectoPOO.model.bodega;
 
 import lombok.Getter;
 

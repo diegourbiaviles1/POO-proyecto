@@ -1,12 +1,12 @@
-package org.example.ProyectoPOO.bodega;
+package org.example.ProyectoPOO.model.bodega;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.ProyectoPOO.administracion.Sucursal;
+import org.example.ProyectoPOO.model.administracion.Sucursal;
 import org.example.ProyectoPOO.model.BaseEntity;
-import org.example.ProyectoPOO.model.Categoria;
-import org.example.ProyectoPOO.transporte.EnvioEstado;
+import org.example.ProyectoPOO.model.transporte.EnvioEstado;
 import org.openxava.annotations.*;
+import  org.proyecto.gestioninventario.model.Embarque;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -40,6 +40,9 @@ public class Paquete extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private EnvioEstado estado;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Embarque embarque;
 
 
 }
