@@ -3,7 +3,8 @@ package org.example.ProyectoPOO.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.dom4j.tree.AbstractEntity;
+import org.example.ProyectoPOO.administracion.Sucursal;
+import org.example.ProyectoPOO.bodega.Paquete;
 import org.openxava.annotations.DescriptionsList;
 
 import javax.persistence.Entity;
@@ -22,7 +23,7 @@ public class Stock extends BaseEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @DescriptionsList(descriptionProperties = "nombre")
-    private Producto producto;
+    private Paquete paquete;
 
     private int cantidad;
 }

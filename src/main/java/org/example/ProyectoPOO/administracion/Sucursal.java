@@ -1,7 +1,8 @@
-package org.example.ProyectoPOO.model;
+package org.example.ProyectoPOO.administracion;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.ProyectoPOO.model.BaseEntity;
 
 import javax.persistence.Entity;
 
@@ -9,7 +10,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 
-public class Sucursal extends BaseEntity{
+public class Sucursal extends BaseEntity {
 
     private String nombre;
 

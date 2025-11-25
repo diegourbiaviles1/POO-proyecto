@@ -1,4 +1,4 @@
-package org.example.ProyectoPOO.model;
+package org.example.ProyectoPOO.transporte;
 
 import lombok.Getter;
 import lombok.Setter;

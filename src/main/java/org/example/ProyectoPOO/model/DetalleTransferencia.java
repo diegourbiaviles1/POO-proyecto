@@ -2,6 +2,7 @@ package org.example.ProyectoPOO.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.ProyectoPOO.bodega.Paquete;
 
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
@@ -15,6 +16,6 @@ import javax.persistence.ManyToOne;
 public class DetalleTransferencia {
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Producto producto;
+    private Paquete producto;
     private int cantidad;
 }

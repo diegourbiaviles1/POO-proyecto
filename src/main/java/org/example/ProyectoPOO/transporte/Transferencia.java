@@ -1,8 +1,10 @@
-package org.example.ProyectoPOO.model;
+package org.example.ProyectoPOO.transporte;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import lombok.Getter;
 import lombok.Setter;
+import org.example.ProyectoPOO.administracion.Sucursal;
+import org.example.ProyectoPOO.model.BaseEntity;
+import org.example.ProyectoPOO.model.DetalleTransferencia;
 import org.openxava.annotations.DefaultValueCalculator;
 import org.openxava.annotations.DescriptionsList;
 import org.openxava.annotations.ListProperties;
