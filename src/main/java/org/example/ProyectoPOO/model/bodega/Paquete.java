@@ -2,47 +2,57 @@ package org.example.ProyectoPOO.model.bodega;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.example.ProyectoPOO.model.administracion.Sucursal;
 import org.example.ProyectoPOO.model.BaseEntity;
-import org.example.ProyectoPOO.model.transporte.EnvioEstado;
-import org.openxava.annotations.*;
-import  org.proyecto.gestioninventario.model.Embarque;
+import org.example.ProyectoPOO.model.Trackeable;
+import org.example.ProyectoPOO.model.administracion.Cliente;
+import org.example.ProyectoPOO.model.administracion.Proveedor;
+import org.example.ProyectoPOO.model.administracion.Sucursal;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Getter @Setter
+public class Paquete extends BaseEntity implements Trackeable {
 
-public class Paquete extends BaseEntity {
+    @Column(length = 50, unique = true)
+    private String trackingProveedor; // código de Amazon, etc.
 
-    @Column(length=28)
-    private String trackingProveedor;
-
-    @TextArea
+    @Column(length = 150)
     private String descripcion;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @DescriptionsList
+    @ManyToOne(optional = false)
+    private Cliente cliente;
+
+    @ManyToOne
+    private Proveedor proveedor;
+
+    @ManyToOne
     private Sucursal ubicacionActual;
 
+    @ManyToOne
+    private UbicacionAlmacen ubicacionDetalle;
+
     @Enumerated(EnumType.STRING)
-    @Required
     private TipoEnvio tipoEnvio;
 
     private BigDecimal pesoLibras;
-
-    @Money
-    @ReadOnly
-    @Calculation("pesoLibras * tipoEnvio")
     private BigDecimal costoEnvio;
 
     @Enumerated(EnumType.STRING)
-    private EnvioEstado estado;
+    private EstadoEnvio estadoActual;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Embarque embarque;
 
+    private boolean facturado;
 
+    @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL)
+    private List<Movimiento> historial;
+
+    @Override
+    public List<Movimiento> getHistorial() {
+        return historial;
+    }
 }

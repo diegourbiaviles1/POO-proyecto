@@ -17,20 +17,20 @@
 	driver to the pom.xml of your project.
 	-->
 	 
-	<!-- HSQLDB -->   	
+	<!-- HSQLDB
     <Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="sa" password="" 
 	      driverClassName="org.hsqldb.jdbc.JDBCDriver"
 	      url="jdbc:hsqldb:hsql://localhost:1666"/>
-	      
-	<!-- MySQL       
+    -->
+    <!-- MySQL
     <Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
-	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="root" password="" 
-	      driverClassName="com.mysql.cj.jdbc.Driver"
-	      url="jdbc:mysql://localhost:3306/ProyectoPOOdb"/>	      
-	-->      
+          maxTotal="20" maxIdle="5" maxWaitMillis="10000"
+          username="root" password=""
+          driverClassName="com.mysql.cj.jdbc.Driver"
+          url="jdbc:mysql://localhost:3306/ProyectoPOOdb"/>
+    -->
 	
 	<!-- PostgreSQL 
 	<Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
@@ -56,13 +56,13 @@
 	      url="jdbc:as400:localhost/ProyectoPOOlib"/>
 	-->
 	
-	<!-- Microsoft SQL Server
+	<!-- Microsoft SQL Server -->
 	<Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="user" password=""
+	      username="Emmanuel05" password="12345678"
 	      driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
-	      url="jdbc:sqlserver://localhost:1433;databaseName=ProyectoPOOdb"/>
-	-->
+	      url="jdbc:sqlserver://localhost:1433;databaseName=ProyectoPOOdb;encrypt=false"/>
+
 	
 	<!-- Informix
 	<Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"

@@ -1,4 +1,4 @@
-package org.example.ProyectoPOO.model.administracion;
+package org.example.ProyectoPOO.model.bodega;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -9,14 +9,14 @@ import javax.persistence.Entity;
 
 @Entity
 @Getter @Setter
-public class Sucursal extends BaseEntity {
+public class Transportista extends BaseEntity {
 
     @Column(length = 80)
     private String nombre;
 
-    @Column(length = 150)
-    private String direccion;
+    @Column(length = 20)
+    private String codigoIata;
 
-    @Column(length = 50)
-    private String horario;
+    @Column(length = 80)
+    private String contacto;
 }

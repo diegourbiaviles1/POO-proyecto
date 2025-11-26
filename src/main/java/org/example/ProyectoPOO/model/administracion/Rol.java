@@ -9,14 +9,8 @@ import javax.persistence.Entity;
 
 @Entity
 @Getter @Setter
-public class Sucursal extends BaseEntity {
+public class Rol extends BaseEntity {
 
-    @Column(length = 80)
+    @Column(length = 40, unique = true)
     private String nombre;
-
-    @Column(length = 150)
-    private String direccion;
-
-    @Column(length = 50)
-    private String horario;
 }

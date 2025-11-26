@@ -1,26 +1,36 @@
 package org.example.ProyectoPOO.model;
 
-import java.math.*;
-import java.time.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.openxava.annotations.*;
-import org.openxava.model.*;
-
-import lombok.*;
-
+import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @MappedSuperclass
-@Getter
-@Setter
-
-public class BaseEntity {
+@Getter @Setter
+public abstract class BaseEntity implements Serializable {
 
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    @Column(length = 32)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private LocalDateTime fechaCreacion;
+    private LocalDateTime fechaActualizacion;
+
+    @Column(length = 50)
+    private String usuarioCreacion;
+
+    @Column(length = 50)
+    private String usuarioActualizacion;
+
+    @PrePersist
+    public void prePersist() {
+        fechaCreacion = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        fechaActualizacion = LocalDateTime.now();
+    }
 }

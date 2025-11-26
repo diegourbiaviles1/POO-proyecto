@@ -6,17 +6,17 @@ import org.example.ProyectoPOO.model.BaseEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 
 @Entity
 @Getter @Setter
-public class Sucursal extends BaseEntity {
+public class Usuario extends BaseEntity {
 
-    @Column(length = 80)
-    private String nombre;
+    @Column(length = 40, unique = true)
+    private String username;
 
-    @Column(length = 150)
-    private String direccion;
+    private String passwordHash;
 
-    @Column(length = 50)
-    private String horario;
+    @ManyToOne(optional = false)
+    private Rol rol;
 }
