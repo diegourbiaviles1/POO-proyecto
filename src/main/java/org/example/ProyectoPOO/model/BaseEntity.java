@@ -15,6 +15,10 @@ public abstract class BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(length = 50, nullable = false)
+    private String tenantId;
+
+
     private LocalDateTime fechaCreacion;
     private LocalDateTime fechaActualizacion;
 
