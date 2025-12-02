@@ -2,12 +2,20 @@ package org.example.ProyectoPOO.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
+@FilterDef(
+        name = "tenantFilter",
+        parameters = @ParamDef(name = "tenantId", type = "string")
+)
+@Filter(name = "tenantFilter", condition = "tenant_id = :tenantId")
 @Getter @Setter
 public abstract class BaseEntity implements Serializable {
 
