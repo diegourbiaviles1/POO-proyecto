@@ -28,9 +28,11 @@ public class Paquete extends BaseEntity implements Trackeable {
     @ManyToOne
     private Proveedor proveedor;
 
+    // sucursal donde está físicamente
     @ManyToOne
     private Sucursal ubicacionActual;
 
+    // detalle de ubicación dentro de la bodega/sucursal
     @ManyToOne
     private UbicacionAlmacen ubicacionDetalle;
 
@@ -54,5 +56,14 @@ public class Paquete extends BaseEntity implements Trackeable {
     @Override
     public List<Movimiento> getHistorial() {
         return historial;
+    }
+
+    @PrePersist
+    public void onPrePersist() {
+        // si no se indica estado, asumimos que está en bodega USA
+        if (estadoActual == null) {
+            estadoActual = EstadoEnvio.EN_BODEGA_USA;
+        }
+        // facturado ya es false por defecto, no hace falta tocarlo
     }
 }

@@ -5,6 +5,8 @@ import lombok.Setter;
 import org.example.ProyectoPOO.model.BaseEntity;
 import org.example.ProyectoPOO.model.administracion.Cliente;
 import org.example.ProyectoPOO.model.bodega.Paquete;
+import javax.persistence.PrePersist;
+
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,4 +31,14 @@ public class ReclamoFactura extends BaseEntity {
 
     @Column(length = 200)
     private String resolucion;
+
+    @PrePersist
+    public void onPrePersist() {
+        if (fechaReclamo == null) {
+            fechaReclamo = LocalDate.now();
+        }
+        if (estado == null) {
+            estado = EstadoReclamo.PENDIENTE;
+        }
+    }
 }

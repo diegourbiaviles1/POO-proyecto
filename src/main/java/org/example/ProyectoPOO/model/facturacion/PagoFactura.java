@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -26,4 +27,11 @@ public class PagoFactura extends BaseEntity {
     private MetodoPago metodo;
 
     private String referenciaTransaccion;
+
+    @PrePersist
+    public void onPrePersist() {
+        if (fechaPago == null) {
+            fechaPago = LocalDate.now();
+        }
+    }
 }

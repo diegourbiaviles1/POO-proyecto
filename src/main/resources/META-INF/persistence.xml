@@ -1,51 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
              version="1.0">
-             
+
+    <!-- Unidad de persistencia usada por la aplicación -->
     <persistence-unit name="default">
-    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    	<non-jta-data-source>java://comp/env/jdbc/ProyectoPOODS</non-jta-data-source>
-    	<class>org.openxava.session.GalleryImage</class>
-    	<class>org.openxava.web.editors.DiscussionComment</class>
-    	<class>com.openxava.naviox.model.ConfigurationRecord</class>
-    	<class>com.openxava.naviox.model.Folder</class>
-    	<class>com.openxava.naviox.model.History</class>
-    	<class>com.openxava.naviox.model.Module</class>
-    	<class>com.openxava.naviox.model.ModuleRights</class>
-    	<class>com.openxava.naviox.model.Organization</class>
-    	<class>com.openxava.naviox.model.Role</class>
-    	<class>com.openxava.naviox.model.SessionRecord</class>
-    	<class>com.openxava.naviox.model.SSORecord</class>
-    	<class>com.openxava.naviox.model.User</class>
-		<class>com.openxava.naviox.model.LDAPConfiguration</class>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- JNDI CORRECTO para el DataSource de SQL Server -->
+        <non-jta-data-source>java:comp/env/jdbc/ProyectoPOODS</non-jta-data-source>
+
+        <!-- Clases de OpenXava -->
+        <class>org.openxava.session.GalleryImage</class>
+        <class>org.openxava.web.editors.DiscussionComment</class>
+        <class>com.openxava.naviox.model.ConfigurationRecord</class>
+        <class>com.openxava.naviox.model.Folder</class>
+        <class>com.openxava.naviox.model.History</class>
+        <class>com.openxava.naviox.model.Module</class>
+        <class>com.openxava.naviox.model.ModuleRights</class>
+        <class>com.openxava.naviox.model.Organization</class>
+        <class>com.openxava.naviox.model.Role</class>
+        <class>com.openxava.naviox.model.SessionRecord</class>
+        <class>com.openxava.naviox.model.SSORecord</class>
+        <class>com.openxava.naviox.model.User</class>
+        <class>com.openxava.naviox.model.LDAPConfiguration</class>
+
+        <!-- Clases de tu proyecto -->
+        <class>org.example.ProyectoPOO.model.administracion.Cliente</class>
+        <class>org.example.ProyectoPOO.model.administracion.Proveedor</class>
+        <class>org.example.ProyectoPOO.model.administracion.Rol</class>
+        <class>org.example.ProyectoPOO.model.administracion.Sucursal</class>
+        <class>org.example.ProyectoPOO.model.administracion.Usuario</class>
+
+        <class>org.example.ProyectoPOO.model.bodega.Categoria</class>
+        <class>org.example.ProyectoPOO.model.bodega.Embarque</class>
+        <class>org.example.ProyectoPOO.model.bodega.InventarioSucursal</class>
+        <class>org.example.ProyectoPOO.model.bodega.Movimiento</class>
+        <class>org.example.ProyectoPOO.model.bodega.Paquete</class>
+        <class>org.example.ProyectoPOO.model.bodega.Producto</class>
+        <class>org.example.ProyectoPOO.model.bodega.Tarifa</class>
+        <class>org.example.ProyectoPOO.model.bodega.Transportista</class>
+        <class>org.example.ProyectoPOO.model.bodega.UbicacionAlmacen</class>
+
+        <class>org.example.ProyectoPOO.model.facturacion.DetalleFactura</class>
+        <class>org.example.ProyectoPOO.model.facturacion.Factura</class>
+        <class>org.example.ProyectoPOO.model.facturacion.MetodoPago</class>
+        <class>org.example.ProyectoPOO.model.facturacion.PagoFactura</class>
+        <class>org.example.ProyectoPOO.model.facturacion.ReclamoFactura</class>
+
         <properties>
+            <!-- Dialect para SQL Server -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+
+            <!-- Que actualice el esquema según tus entidades (añade columnas nuevas, etc.) -->
             <property name="javax.persistence.schema-generation.database.action" value="update"/>
+
+            <!-- Opcional: ver el SQL en consola -->
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
     </persistence-unit>
-                    
-    <!-- JUnit Hypersonic -->
+
+    <!-- Unidad de persistencia para tests (JUnit) -->
+    <!-- Si no usas tests, ni te preocupes mucho por esto -->
     <persistence-unit name="junit">
-    	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    	<class>org.openxava.web.editors.DiscussionComment</class>
-    	<class>com.openxava.naviox.model.ConfigurationRecord</class>
-    	<class>com.openxava.naviox.model.Folder</class>
-    	<class>com.openxava.naviox.model.History</class>
-    	<class>com.openxava.naviox.model.Module</class>
-    	<class>com.openxava.naviox.model.ModuleRights</class>
-    	<class>com.openxava.naviox.model.Organization</class>
-    	<class>com.openxava.naviox.model.Role</class>
-    	<class>com.openxava.naviox.model.SessionRecord</class>
-    	<class>com.openxava.naviox.model.SSORecord</class>
-    	<class>com.openxava.naviox.model.User</class>
-		<class>com.openxava.naviox.model.LDAPConfiguration</class>
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Usamos el MISMO DataSource de SQL Server -->
+        <non-jta-data-source>java:comp/env/jdbc/ProyectoPOODS</non-jta-data-source>
+
+        <class>org.openxava.web.editors.DiscussionComment</class>
+        <class>com.openxava.naviox.model.ConfigurationRecord</class>
+        <class>com.openxava.naviox.model.Folder</class>
+        <class>com.openxava.naviox.model.History</class>
+        <class>com.openxava.naviox.model.Module</class>
+        <class>com.openxava.naviox.model.ModuleRights</class>
+        <class>com.openxava.naviox.model.Organization</class>
+        <class>com.openxava.naviox.model.Role</class>
+        <class>com.openxava.naviox.model.SessionRecord</class>
+        <class>com.openxava.naviox.model.SSORecord</class>
+        <class>com.openxava.naviox.model.User</class>
+        <class>com.openxava.naviox.model.LDAPConfiguration</class>
+
+        <class>org.example.ProyectoPOO.model.administracion.Cliente</class>
+        <class>org.example.ProyectoPOO.model.administracion.Proveedor</class>
+        <class>org.example.ProyectoPOO.model.administracion.Rol</class>
+        <class>org.example.ProyectoPOO.model.administracion.Sucursal</class>
+        <class>org.example.ProyectoPOO.model.administracion.Usuario</class>
+
+        <class>org.example.ProyectoPOO.model.bodega.Categoria</class>
+        <class>org.example.ProyectoPOO.model.bodega.Embarque</class>
+        <class>org.example.ProyectoPOO.model.bodega.InventarioSucursal</class>
+        <class>org.example.ProyectoPOO.model.bodega.Movimiento</class>
+        <class>org.example.ProyectoPOO.model.bodega.Paquete</class>
+        <class>org.example.ProyectoPOO.model.bodega.Producto</class>
+        <class>org.example.ProyectoPOO.model.bodega.Tarifa</class>
+        <class>org.example.ProyectoPOO.model.bodega.Transportista</class>
+        <class>org.example.ProyectoPOO.model.bodega.UbicacionAlmacen</class>
+
+        <class>org.example.ProyectoPOO.model.facturacion.DetalleFactura</class>
+        <class>org.example.ProyectoPOO.model.facturacion.Factura</class>
+        <class>org.example.ProyectoPOO.model.facturacion.MetodoPago</class>
+        <class>org.example.ProyectoPOO.model.facturacion.PagoFactura</class>
+        <class>org.example.ProyectoPOO.model.facturacion.ReclamoFactura</class>
+
         <properties>
-			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost:1666"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+            <property name="javax.persistence.schema-generation.database.action" value="update"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
         </properties>
-    </persistence-unit>    
-    
+
+    </persistence-unit>
+
 </persistence>
