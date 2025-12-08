@@ -45,18 +45,12 @@
         <class>org.example.ProyectoPOO.model.bodega.Transportista</class>
         <class>org.example.ProyectoPOO.model.bodega.UbicacionAlmacen</class>
 
-        <class>org.example.ProyectoPOO.model.facturacion.DetalleFactura</class>
-        <class>org.example.ProyectoPOO.model.facturacion.Factura</class>
-        <class>org.example.ProyectoPOO.model.facturacion.MetodoPago</class>
-        <class>org.example.ProyectoPOO.model.facturacion.PagoFactura</class>
-        <class>org.example.ProyectoPOO.model.facturacion.ReclamoFactura</class>
 
         <properties>
             <!-- Dialect para SQL Server -->
             <!--<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>-->
             <!-- Dialect para PostGre -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
-
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
 
             <!-- Que actualice el esquema según tus entidades (añade columnas nuevas, etc.) -->
             <property name="javax.persistence.schema-generation.database.action" value="update"/>
@@ -104,11 +98,7 @@
         <class>org.example.ProyectoPOO.model.bodega.Transportista</class>
         <class>org.example.ProyectoPOO.model.bodega.UbicacionAlmacen</class>
 
-        <class>org.example.ProyectoPOO.model.facturacion.DetalleFactura</class>
-        <class>org.example.ProyectoPOO.model.facturacion.Factura</class>
-        <class>org.example.ProyectoPOO.model.facturacion.MetodoPago</class>
-        <class>org.example.ProyectoPOO.model.facturacion.PagoFactura</class>
-        <class>org.example.ProyectoPOO.model.facturacion.ReclamoFactura</class>
+
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
