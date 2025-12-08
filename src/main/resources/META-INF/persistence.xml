@@ -26,6 +26,8 @@
         <class>com.openxava.naviox.model.User</class>
         <class>com.openxava.naviox.model.LDAPConfiguration</class>
 
+
+
         <!-- Clases de tu proyecto -->
         <class>org.example.ProyectoPOO.model.administracion.Cliente</class>
         <class>org.example.ProyectoPOO.model.administracion.Proveedor</class>
@@ -51,7 +53,10 @@
 
         <properties>
             <!-- Dialect para SQL Server -->
-            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+            <!--<property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>-->
+            <!-- Dialect para PostGre -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+
 
             <!-- Que actualice el esquema según tus entidades (añade columnas nuevas, etc.) -->
             <property name="javax.persistence.schema-generation.database.action" value="update"/>

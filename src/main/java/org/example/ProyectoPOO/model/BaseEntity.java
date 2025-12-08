@@ -3,9 +3,9 @@ package org.example.ProyectoPOO.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.ProyectoPOO.multitenancy.TenantContext;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
+//import org.hibernate.annotations.Filter;
+//import org.hibernate.annotations.FilterDef;
+//import org.hibernate.annotations.ParamDef;
 import org.openxava.annotations.ReadOnly;
 
 import javax.persistence.*;
@@ -13,11 +13,11 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @MappedSuperclass
-@FilterDef(
-        name = "tenantFilter",
-        parameters = @ParamDef(name = "tenantId", type = "string")
-)
-@Filter(name = "tenantFilter", condition = "tenantId = :tenantId")
+//@FilterDef(
+//       name = "tenantFilter",
+//        parameters = @ParamDef(name = "tenantId", type = "string")
+//)
+//@Filter(name = "tenantFilter", condition = "tenantId = :tenantId")
 @Getter @Setter
 public abstract class BaseEntity implements Serializable {
 

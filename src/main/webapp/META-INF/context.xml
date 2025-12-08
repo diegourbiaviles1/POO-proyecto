@@ -32,13 +32,13 @@
           url="jdbc:mysql://localhost:3306/ProyectoPOOdb"/>
     -->
 	
-	<!-- PostgreSQL
+	<!-- PostgreSQL -->
 	<Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="postgres" password="85182096ana"
 	      driverClassName="org.postgresql.Driver" 
-	      url="jdbc:postgresql://localhost/ProyectoPOOdb"/>
-    -->
+	      url="jdbc:postgresql://localhost/ProyectoPOOdb_pg"/>
+
 
 	
 	<!-- Oracle 
@@ -57,12 +57,13 @@
 	      url="jdbc:as400:localhost/ProyectoPOOlib"/>
 	-->
 	
-	<!-- Microsoft SQL Server -->
+	<!-- Microsoft SQL Server
 	<Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
 	      username="Emmanuel05" password="12345678"
 	      driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
 	      url="jdbc:sqlserver://localhost:1433;databaseName=ProyectoPOOdb;encrypt=false"/>
+	      -->
 
 	
 	<!-- Informix
