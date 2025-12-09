@@ -17,13 +17,21 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
 @Entity
+
 @FilterDef(
         name = "sucursalFilter",
         parameters = @ParamDef(name = "sucursalId", type = "long")
 )
 @Filter(name = "sucursalFilter", condition = "sucursal_id = :sucursalId")
-@Getter @Setter
 
+@Tab(
+        filter = SucursalUsuarioFilter.class,
+        baseCondition = "${sucursal.id} = ?",
+        properties = "nombre, descripcion, categoria.descripcion, sucursal.nombre"
+)
+// -----------------------------------------------------------
+
+@Getter @Setter
 public class Producto extends BaseEntity {
 
     @Column(length = 100)
