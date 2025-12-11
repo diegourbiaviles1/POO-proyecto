@@ -2,34 +2,23 @@ package org.example.ProyectoPOO.model.bodega;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.example.ProyectoPOO.annotations.FilterRestrictiva; // <--- NUEVA IMPORTACIÓN
 import org.example.ProyectoPOO.model.BaseEntity;
 import org.example.ProyectoPOO.model.administracion.Sucursal;
-import org.hibernate.annotations.Filter;
-import org.hibernate.annotations.FilterDef;
-import org.hibernate.annotations.ParamDef;
-import javax.persistence.JoinColumn;
-
-import org.example.ProyectoPOO.model.administracion.SucursalUsuarioFilter;
 import org.openxava.annotations.Tab;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 
-@FilterDef(
-        name = "sucursalFilter",
-        parameters = @ParamDef(name = "sucursalId", type = "long")
-)
-@Filter(name = "sucursalFilter", condition = "sucursal_id = :sucursalId")
-
+@FilterRestrictiva
 @Tab(
-        filter = SucursalUsuarioFilter.class,
-        baseCondition = "${sucursal.id} = ?",
+        // Ya no necesitamos 'filter' ni 'baseCondition' aquí porque el Inspector intercepta el SQL globalmente
         properties = "nombre, descripcion, categoria.descripcion, sucursal.nombre"
 )
-// -----------------------------------------------------------
 
 @Getter @Setter
 public class Producto extends BaseEntity {
@@ -44,6 +33,6 @@ public class Producto extends BaseEntity {
     private Categoria categoria;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "sucursal_id")
+    @JoinColumn(name = "sucursal_id") // El inspector buscará esta columna 'sucursal_id'
     private Sucursal sucursal;
 }

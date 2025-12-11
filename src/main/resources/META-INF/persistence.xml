@@ -106,6 +106,7 @@
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.session_factory.statement_inspector" value="org.example.ProyectoPOO.config.RestrictivaStatementInspector"/>
         </properties>
 
     </persistence-unit>
