@@ -34,10 +34,19 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
     -->
 
     <controller name="SignIn">
-        <action name="signIn"
-                class="org.example.ProyectoPOO.model.actions.CustomSignInAction"
-                mode="detail"
-                keystroke="ENTER" />
-    </controller>
 
+        <action name="init" on-init="true" hidden="true"
+                class="com.openxava.naviox.actions.InitSignInAction"/>
+        <!--  OPCIÓN A: LOGIN ESTÁNDAR (admin / admin)
+            Para usar admin / admin:
+        <action name="signIn"
+                class="com.openxava.naviox.actions.SignInAction"/> -->
+        <!--  OPCIÓN B: LOGIN CON TU TABLA Usuario
+              Para usar emmanuel.aguilar / hash123:
+        -->
+        <action name="signIn"
+                class="org.example.ProyectoPOO.model.actions.Conexion"/>
+        <action name="cancel"
+                class="com.openxava.naviox.actions.CancelSignInAction"/>
+    </controller>
 </controllers>

@@ -21,6 +21,14 @@ public class Usuario extends BaseEntity {
     @ManyToOne(optional = false)
     private Rol rol;
 
+    public Sucursal getSucursal() {
+        return sucursal;
+    }
+
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
+    }
+
     @ManyToOne(optional = false)
     private Sucursal sucursal;
 }
