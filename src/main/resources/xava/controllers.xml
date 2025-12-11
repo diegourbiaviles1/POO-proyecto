@@ -49,4 +49,32 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
         <action name="cancel"
                 class="com.openxava.naviox.actions.CancelSignInAction"/>
     </controller>
+
+
+
+    <controller name="Paquete">
+        <extends controller="Typical"/>
+
+        <action name="cambiarUbicacion"
+                class="org.example.ProyectoPOO.model.actions.paquete.CambiarUbicacionPaqueteAction"
+                mode="list"
+                image="move"
+                label="Change location"/>
+    </controller>
+
+    <controller name="CambioUbicacionPaquete">
+
+        <action name="guardarUbicacion"
+                class="org.example.ProyectoPOO.model.actions.paquete.GuardarUbicacionPaqueteAction"
+                mode="detail"
+                image="save"
+                label="Guardar ubicacion"/>
+
+        <action name="close"
+                class="org.openxava.actions.CancelAction"
+                mode="detail"
+                image="close"
+                label="Close"/>
+    </controller>
+
 </controllers>

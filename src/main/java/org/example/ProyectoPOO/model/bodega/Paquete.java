@@ -7,11 +7,22 @@ import org.example.ProyectoPOO.model.Trackeable;
 import org.example.ProyectoPOO.model.administracion.Cliente;
 import org.example.ProyectoPOO.model.administracion.Proveedor;
 import org.example.ProyectoPOO.model.administracion.Sucursal;
+import org.openxava.annotations.DescriptionsList;
+import org.openxava.annotations.Required;
+import org.openxava.annotations.View;
+import org.openxava.annotations.Views;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Views({
+        @View(members = "id, trackingProveedor, cliente, proveedor, ubicacionActual, ubicacionDetalle, ..."), // tu vista normal
+        @View(
+                name = "cambiarUbicacion",
+                members = "id; ubicacionActual, ubicacionDetalle"   // aquí lo que quieres ver en el diálogo
+        )
+})
 @Entity
 @Getter @Setter
 public class Paquete extends BaseEntity implements Trackeable {
@@ -34,6 +45,8 @@ public class Paquete extends BaseEntity implements Trackeable {
 
     // detalle de ubicación dentro de la bodega/sucursal
     @ManyToOne
+    @Required
+    @DescriptionsList(descriptionProperties = "sucursal.nombre")
     private UbicacionAlmacen ubicacionDetalle;
 
     @Enumerated(EnumType.STRING)
@@ -66,4 +79,16 @@ public class Paquete extends BaseEntity implements Trackeable {
         }
         // facturado ya es false por defecto, no hace falta tocarlo
     }
+
+    public void setUbicacionDetalle(UbicacionAlmacen ubicacionDetalle) {
+        this.ubicacionDetalle = ubicacionDetalle;
+
+        if (ubicacionDetalle != null) {
+            this.ubicacionActual = ubicacionDetalle.getSucursal();
+        } else {
+            this.ubicacionActual = null;
+        }
+    }
+
+
 }

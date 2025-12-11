@@ -8,10 +8,6 @@
 	A default module for each entity is assumed with the
 	controllers on <default-module/>
 	-->
-	<default-module>		  
-		<controller name="Typical"/>		
-	</default-module>
-	
 	<!-- 
 	You can define additional modules, for example:	  
 	<module name="OnlyReadTeacher">
@@ -19,5 +15,20 @@
 		<controller name="Print"/>
 	</module>		
 	-->
-	
+
+
+        <!-- Módulo por defecto: usa Typical en todos los módulos que no se definan -->
+        <default-module>
+            <controller name="Typical"/>
+        </default-module>
+
+        <!-- Módulo específico para Paquete: usa el controller Paquete -->
+        <module name="Paquete">
+            <model name="Paquete"/>
+            <controller name="Paquete"/>
+        </module>
+
+
+
+
 </application>
