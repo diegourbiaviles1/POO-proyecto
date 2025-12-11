@@ -6,7 +6,8 @@ public class TenantContext {
 
     public static String getCurrentTenant() {
         String tenant = CURRENT_TENANT.get();
-        return tenant != null ? tenant : "default";
+        // CAMBIO: Usar "dbo" en lugar de "default"
+        return tenant != null ? tenant : "dbo";
     }
 
     public static void setCurrentTenant(String tenantId) {

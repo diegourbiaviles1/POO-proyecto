@@ -26,8 +26,14 @@ public class SimpleMultiTenantConnectionProvider implements MultiTenantConnectio
 
     @Override
     public Connection getConnection(String tenantIdentifier) throws SQLException {
-        // 👉 Usas la misma BD para todos los tenants
-        return getAnyConnection();
+        Connection connection = getAnyConnection();
+        try {
+            // Si es "dbo", no hace falta cambiar, pero para "3", "4"... sí.
+            connection.setSchema(tenantIdentifier);
+        } catch (SQLException e) {
+            throw new SQLException("Error al cambiar al esquema de la sucursal: " + tenantIdentifier, e);
+        }
+        return connection;
     }
 
     @Override

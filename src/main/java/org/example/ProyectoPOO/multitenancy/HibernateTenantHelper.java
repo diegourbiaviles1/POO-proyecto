@@ -1,46 +1,23 @@
-package org.example.ProyectoPOO.multitenancy;
+package org.example.ProyectoPOO.multitenancy; // <-- ajusta si es distinto
 
-import org.example.ProyectoPOO.model.administracion.Usuario;
 import org.hibernate.Session;
 import org.openxava.jpa.XPersistence;
-import org.openxava.util.Users;
 
-import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
+import java.util.Set;
 
 public class HibernateTenantHelper {
 
     public static void applySucursalFilter() {
+        // Solo mostramos los filtros definidos y NO activamos ninguno
+        Session session = (Session) XPersistence.getManager().getDelegate();
+        Set<String> filtros = session.getSessionFactory().getDefinedFilterNames();
+        System.out.println("Filtros definidos en SessionFactory: " + filtros);
 
-        String username = Users.getCurrent();
-        if (username == null || username.trim().isEmpty()) {
-            System.out.println("applySucursalFilter(): sin usuario autenticado, no se habilita filtro");
-            return;
-        }
+        // IMPORTANTE: ya no intentamos habilitar "sucursalFilter"
+        // porque ahora usamos el filtro de OpenXava (@Tab + SucursalActualFilter)
+    }
 
-        EntityManager em = XPersistence.getManager();
-        Session session = em.unwrap(Session.class);
-
-        try {
-            Usuario usuario = em.createQuery(
-                            "from Usuario u where u.username = :username",
-                            Usuario.class
-                    )
-                    .setParameter("username", username)
-                    .getSingleResult();
-
-            Long sucursalId = usuario.getSucursal().getId();
-
-            System.out.println("applySucursalFilter(): usuario=" + username +
-                    ", sucursalId=" + sucursalId);
-
-            session.enableFilter("sucursalFilter")
-                    .setParameter("sucursalId", sucursalId);
-
-            TenantContext.setCurrentTenant(String.valueOf(sucursalId));
-
-        } catch (NoResultException ex) {
-            System.out.println("applySucursalFilter(): no se encontró Usuario en BD para username=" + username);
-        }
+    public static void disableSucursalFilter() {
+        // Metodo vacío para que si lo llamas en TenantFilter no pase nada
     }
 }

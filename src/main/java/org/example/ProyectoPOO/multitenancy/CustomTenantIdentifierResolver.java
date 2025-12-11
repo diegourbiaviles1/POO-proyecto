@@ -6,7 +6,12 @@ public class CustomTenantIdentifierResolver implements CurrentTenantIdentifierRe
 
     @Override
     public String resolveCurrentTenantIdentifier() {
-        return TenantContext.getCurrentTenant();
+        String tenantId = TenantContext.getCurrentTenant();
+        // Si es null (pantalla de login), usa el esquema por defecto que creaste en el paso 1
+        if (tenantId == null) {
+            return "SucursalCentral";
+        }
+        return tenantId;
     }
 
     @Override

@@ -102,13 +102,19 @@
 
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
-            <property name="javax.persistence.schema-generation.database.action" value="update"/>
+
+            <property name="hibernate.multiTenancy" value="SCHEMA"/>
+            <property name="hibernate.multi_tenant_connection_provider"
+                      value="org.example.ProyectoPOO.multitenancy.SimpleMultiTenantConnectionProvider"/>
+            <property name="hibernate.tenant_identifier_resolver"
+                      value="org.example.ProyectoPOO.multitenancy.CustomTenantIdentifierResolver"/>
+
             <property name="hibernate.hbm2ddl.auto" value="update"/>
+
+            <property name="javax.persistence.schema-generation.database.action" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
-            <property name="hibernate.session_factory.statement_inspector" value="org.example.ProyectoPOO.config.RestrictivaStatementInspector"/>
         </properties>
-
     </persistence-unit>
 
 </persistence>
