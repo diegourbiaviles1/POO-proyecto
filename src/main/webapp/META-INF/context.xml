@@ -60,7 +60,7 @@
 	<!-- Microsoft SQL Server -->
 	<Resource name="jdbc/ProyectoPOODS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="Emmanuel05" password="12345678"
+	      username="Diego" password="1234"
 	      driverClassName="com.microsoft.sqlserver.jdbc.SQLServerDriver" 
 	      url="jdbc:sqlserver://localhost:1433;databaseName=ProyectoPOOdb;encrypt=false"/>
 

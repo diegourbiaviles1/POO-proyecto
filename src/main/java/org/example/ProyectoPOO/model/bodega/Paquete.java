@@ -16,19 +16,30 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+@Entity
+@Getter
+@Setter
 @Views({
-        @View(members = "id, trackingProveedor, cliente, proveedor, ubicacionActual, ubicacionDetalle, ..."), // tu vista normal
+        // Vista principal del módulo Paquete
+        @View(
+                members =
+                        "id, trackingProveedor, descripcion;" +
+                                "cliente, proveedor;" +
+                                "ubicacionActual, ubicacionDetalle;" +
+                                "tipoEnvio, pesoLibras, costoEnvio;" +
+                                "estadoActual, embarque, facturado"
+        ),
+        // Vista usada por la acción Change location
         @View(
                 name = "cambiarUbicacion",
-                members = "id; ubicacionActual, ubicacionDetalle"   // aquí lo que quieres ver en el diálogo
+                members = "id; ubicacionActual, ubicacionDetalle"
         )
 })
-@Entity
-@Getter @Setter
 public class Paquete extends BaseEntity implements Trackeable {
 
+    // Código de tracking que da el proveedor (Amazon, eBay, etc.)
     @Column(length = 50, unique = true)
-    private String trackingProveedor; // código de Amazon, etc.
+    private String trackingProveedor;
 
     @Column(length = 150)
     private String descripcion;
@@ -39,20 +50,21 @@ public class Paquete extends BaseEntity implements Trackeable {
     @ManyToOne
     private Proveedor proveedor;
 
-    // sucursal donde está físicamente
+    // Sucursal donde está físicamente el paquete
     @ManyToOne
     private Sucursal ubicacionActual;
 
-    // detalle de ubicación dentro de la bodega/sucursal
+    // Detalle de ubicación dentro de la sucursal/bodega
     @ManyToOne
     @Required
     @DescriptionsList(descriptionProperties = "sucursal.nombre")
     private UbicacionAlmacen ubicacionDetalle;
 
     @Enumerated(EnumType.STRING)
-    private TipoEnvio tipoEnvio;
+    private TipoEnvio tipoEnvio;          // AEREO / MARITIMO, etc.
 
     private BigDecimal pesoLibras;
+
     private BigDecimal costoEnvio;
 
     @Enumerated(EnumType.STRING)
@@ -61,8 +73,10 @@ public class Paquete extends BaseEntity implements Trackeable {
     @ManyToOne
     private Embarque embarque;
 
+    // Indica si ya se facturó este paquete
     private boolean facturado;
 
+    // Historial de movimientos para el tracking
     @OneToMany(mappedBy = "paquete", cascade = CascadeType.ALL)
     private List<Movimiento> historial;
 
@@ -71,24 +85,26 @@ public class Paquete extends BaseEntity implements Trackeable {
         return historial;
     }
 
+    /**
+     * Al guardar por primera vez el paquete,
+     * si no se indicó un estado lo ponemos por defecto.
+     */
     @PrePersist
     public void onPrePersist() {
-        // si no se indica estado, asumimos que está en bodega USA
         if (estadoActual == null) {
-            estadoActual = EstadoEnvio.EN_BODEGA_USA;
+            estadoActual = EstadoEnvio.EN_BODEGA_USA; // ajusta al valor que tengas en tu enum
         }
-        // facturado ya es false por defecto, no hace falta tocarlo
     }
 
+    /**
+     * Sincroniza ubicacionActual con la sucursal de la ubicacionDetalle.
+     */
     public void setUbicacionDetalle(UbicacionAlmacen ubicacionDetalle) {
         this.ubicacionDetalle = ubicacionDetalle;
-
         if (ubicacionDetalle != null) {
             this.ubicacionActual = ubicacionDetalle.getSucursal();
         } else {
             this.ubicacionActual = null;
         }
     }
-
-
 }

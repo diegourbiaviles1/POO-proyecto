@@ -62,19 +62,22 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
                 label="Change location"/>
     </controller>
 
+
+
     <controller name="CambioUbicacionPaquete">
 
         <action name="guardarUbicacion"
                 class="org.example.ProyectoPOO.model.actions.paquete.GuardarUbicacionPaqueteAction"
                 mode="detail"
                 image="save"
-                label="Guardar ubicacion"/>
+                label="Guardar ubicación"/>
 
         <action name="close"
                 class="org.openxava.actions.CancelAction"
                 mode="detail"
                 image="close"
-                label="Close"/>
+                label="Cerrar"/>
     </controller>
+
 
 </controllers>
